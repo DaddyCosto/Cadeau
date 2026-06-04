@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anniversaire 17 ans</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+body{
+  scroll-snap-type:y mandatory;
+  overflow-x:hidden;
+}
+
+/* SLIDES */
+.slide{
+  height:100vh;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  text-align:center;
+  scroll-snap-align:start;
+  position:relative;
+  padding:20px;
+}
+
+#s1{background:linear-gradient(135deg,#ffdde1,#ee9ca7);}
+#s2{background:linear-gradient(135deg,#a1c4fd,#c2e9fb);}
+#s3{background:linear-gradient(135deg,#fbc2eb,#a6c1ee);}
+#s4{background:linear-gradient(135deg,#fdfbfb,#ebedee);}
+#s5{background:linear-gradient(135deg,#fff1eb,#ace0f9);}
+
+h1{
+  font-size:2.5em;
+  color:#fff;
+  text-shadow:2px 2px 10px rgba(0,0,0,0.3);
+}
+
+p{
+  font-size:1.2em;
+  max-width:80%;
+}
+
+/* images */
+img{
+  width:260px;
+  border-radius:20px;
+  margin:20px;
+  box-shadow:0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* bouton musique */
+#btnMusic{
+  position:absolute;
+  padding:15px 20px;
+  font-size:18px;
+  border:none;
+  border-radius:20px;
+  background:#ff4d6d;
+  color:white;
+  cursor:pointer;
+  transition:0.2s;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SLIDE 1 -->
+<section class="slide" id="s1">
+  <h1>🎉 Joyeux Anniversaire 17 ans 🎉</h1>
+  <p>Zanzè Angeline 💖</p>
+</section>
+
+<!-- SLIDE 2 -->
+<section class="slide" id="s2">
+  <h1>🐱</h1>
+  <img src="https://images.unsplash.com/photo-1511044568932-338cba0ad803">
+  <p>Un petit chat te souhaite un merveilleux anniversaire 💕</p>
+</section>
+
+<!-- SLIDE 3 -->
+<section class="slide" id="s3">
+  <h1>✨ La légende des 17 étoiles ✨</h1>
+  <p>
+    À 17 ans, une étoile spéciale apparaît dans le ciel.<br>
+    Elle guide les rêves et protège les cœurs purs.<br>
+    Aujourd’hui, elle brille pour toi 🌟
+  </p>
+</section>
+
+<!-- SLIDE 4 -->
+<section class="slide" id="s4">
+  <h1>🎶 Active la magie 🎶</h1>
+
+  <button id="btnMusic">Touche-moi</button>
+
+  <audio id="music">
+    <source src="music.mp3" type="audio/mp3">
+  </audio>
+</section>
+
+<!-- SLIDE 5 -->
+<section class="slide" id="s5">
+  <h1>🐶 + 🎆</h1>
+  <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16">
+
+  <p>
+    Lawson Jean Pierre te souhaite le meilleur des anniversaires 🎉<br>
+    Beaucoup de bonheur, de réussite et de lumière ✨
+  </p>
+</section>
+
+<script>
+
+/* CONFETTIS EN CONTINU */
+setInterval(() => {
+  confetti({
+    particleCount: 6,
+    spread: 120,
+    origin: { y: 0 },
+    gravity: 0.6,
+    scalar: 1.5
+  });
+}, 500);
+
+/* MUSIQUE + BOUTON MOBILE */
+const btn = document.getElementById("btnMusic");
+const music = document.getElementById("music");
+
+let moves = 0;
+
+function moveButton(){
+  const x = Math.random() * (window.innerWidth - 120);
+  const y = Math.random() * (window.innerHeight - 120);
+
+  btn.style.left = x + "px";
+  btn.style.top = y + "px";
+
+  moves++;
+
+  if(moves >= 3){
+    btn.innerText = "▶ Lecture...";
+    music.play().catch(()=>{
+      alert("Clique encore une fois pour activer la musique");
+    });
+  }
+}
+
+btn.addEventListener("click", moveButton);
+btn.addEventListener("mouseover", moveButton);
+
+</script>
+
+</body>
+    </html>
